@@ -6,7 +6,11 @@ export default function News({ results }) {
 			<h1>Top Stories</h1>
 			<ul>
 				{results.map((result) => (
-					<li key={result.uri}>{result.title}</li>
+					<li key={result.uri}>
+						<a href={result.url} target='_blank' rel='noopener norefferer'>
+							{result.title}
+						</a>
+					</li>
 				))}
 			</ul>
 			<Link href={'/'}>Go to Home</Link>
