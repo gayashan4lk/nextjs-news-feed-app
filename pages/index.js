@@ -43,13 +43,10 @@ export default function Home() {
 						<p>Learn Angular in an interactive course with quizzes!</p>
 					</Link>
 
-					<a
-						href='https://github.com/vercel/next.js/tree/canary/examples'
-						className={styles.card}
-					>
-						<h2>Examples &rarr;</h2>
-						<p>Discover and deploy boilerplate example Next.js projects.</p>
-					</a>
+					<Link href='/contacts' className={styles.card}>
+						<h2>Challenge 01 &rarr;</h2>
+						<p>This challenge is about dynamic routing.</p>
+					</Link>
 
 					<a
 						href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
