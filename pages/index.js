@@ -1,9 +1,20 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
+import links from './api/links';
 
 export default function Home() {
+	const [query, setQuery] = useState();
+	const router = useRouter();
+	const handleOnChange = (e) => setQuery(e.target.value);
+	const handleOnSubmit = (e) => {
+		e.preventDefault();
+		router.push(`/news/${query}`);
+	};
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -48,29 +59,39 @@ export default function Home() {
 						<p>This challenge is about dynamic routing.</p>
 					</Link>
 
-					<a
-						href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-						className={styles.card}
-					>
-						<h2>Deploy &rarr;</h2>
+					<Link href='/news' className={styles.card}>
+						<h2>Top Stories &rarr;</h2>
+						<p>Read top articles of New York Times.</p>
+					</Link>
+
+					<div className={styles.card}>
+						<h2>Search Stories &rarr;</h2>
 						<p>
-							Instantly deploy your Next.js site to a public URL with Vercel.
+							Search enything. <br />{' '}
+							<small>Eg: sports, food, foreign, education</small>
 						</p>
-					</a>
+						<form onSubmit={handleOnSubmit}>
+							<input type='text' onChange={handleOnChange} />
+							<input type='submit' value='Search' />
+						</form>
+					</div>
+
+					{links.map((link) => (
+						<div className={styles.card}>
+							<Link key={link.path} href={`mynews/${link.path}`}>
+								<h2>{link.title}</h2>
+								<p>{link.desc}</p>
+							</Link>
+						</div>
+					))}
 				</div>
 			</main>
 
 			<footer className={styles.footer}>
-				<a
-					href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-					target='_blank'
-					rel='noopener noreferrer'
-				>
-					Powered by{' '}
-					<span className={styles.logo}>
-						<Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
-					</span>
-				</a>
+				Powered by{' '}
+				<span className={styles.logo}>
+					<Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
+				</span>
 			</footer>
 		</div>
 	);
