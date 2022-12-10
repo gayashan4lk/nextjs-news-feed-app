@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
+import links from './api/links';
 
 export default function Home() {
 	const [query, setQuery] = useState();
@@ -74,6 +75,15 @@ export default function Home() {
 							<input type='submit' value='Search' />
 						</form>
 					</div>
+
+					{links.map((link) => (
+						<div className={styles.card}>
+							<Link key={link.path} href={`mynews/${link.path}`}>
+								<h2>{link.title}</h2>
+								<p>{link.desc}</p>
+							</Link>
+						</div>
+					))}
 				</div>
 			</main>
 

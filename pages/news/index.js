@@ -24,7 +24,6 @@ const API_KEY = 'dzvOipA1Em2L0Ga2yYmpy4cLX3EAkvDZ';
 export async function getStaticProps() {
 	const URL = `https://api.nytimes.com/svc/topstories/v2/science.json?api-key=${API_KEY}`;
 	const results = await apiHandler(URL);
-	console.log(results);
 
 	return {
 		props: {
