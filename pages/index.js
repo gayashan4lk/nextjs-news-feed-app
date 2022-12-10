@@ -1,9 +1,19 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
+	const [query, setQuery] = useState();
+	const router = useRouter();
+	const handleOnChange = (e) => setQuery(e.target.value);
+	const handleOnSubmit = (e) => {
+		e.preventDefault();
+		router.push(`/news/${query}`);
+	};
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -50,8 +60,17 @@ export default function Home() {
 
 					<Link href='/news' className={styles.card}>
 						<h2>Top Stories &rarr;</h2>
-						<p>Read top articles of New York Times</p>
+						<p>Read top articles of New York Times.</p>
 					</Link>
+
+					<div className={styles.card}>
+						<h2>Search Stories &rarr;</h2>
+						<p>Search news categories.</p>
+						<form onSubmit={handleOnSubmit}>
+							<input type='text' onChange={handleOnChange} />
+							<input type='submit' value='Search' />
+						</form>
+					</div>
 				</div>
 			</main>
 
