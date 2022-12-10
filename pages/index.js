@@ -65,7 +65,10 @@ export default function Home() {
 
 					<div className={styles.card}>
 						<h2>Search Stories &rarr;</h2>
-						<p>Search news categories.</p>
+						<p>
+							Search enything. <br />{' '}
+							<small>Eg: sports, food, foreign, education</small>
+						</p>
 						<form onSubmit={handleOnSubmit}>
 							<input type='text' onChange={handleOnChange} />
 							<input type='submit' value='Search' />
