@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { apiHandler } from '../api';
 
 export default function News({ results }) {
 	return (
@@ -22,13 +23,12 @@ const API_KEY = 'dzvOipA1Em2L0Ga2yYmpy4cLX3EAkvDZ';
 
 export async function getStaticProps() {
 	const URL = `https://api.nytimes.com/svc/topstories/v2/science.json?api-key=${API_KEY}`;
-	const response = await fetch(URL);
-	const data = await response.json();
-	console.log(data);
+	const results = await apiHandler(URL);
+	console.log(results);
 
 	return {
 		props: {
-			results: data.results,
+			results: results,
 		},
 	};
 }

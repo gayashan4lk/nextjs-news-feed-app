@@ -1,3 +1,5 @@
+import { apiSearch } from '../api';
+
 export default function News() {
 	return <h1>Search</h1>;
 }
